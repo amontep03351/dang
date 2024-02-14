@@ -64,21 +64,33 @@
       background-color: #000;
     }
 
-    /* Square Skill Items */
+    /* Honeycomb Skill Items */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 10px;
+      margin-top: 20px;
     }
 
     .skills-item {
+      background-color: transparent;
       color: #fff;
-      padding: 10px;
-      border-radius: 5px;
+      padding: 10px; 
       text-align: center;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      /* Randomly generate background color */
+      position: relative;
+    }
+
+    .skills-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
       background-color: #{{bg-color}};
+      z-index: -1;
     }
   </style>
 </head>
@@ -107,24 +119,24 @@
       <div class="col-md-12">
         <h3 class="section-heading">Skills</h3>
         <div class="skills-grid">
-          <div class="skills-item" style="background-color: #0078d4;">HTML</div>
-          <div class="skills-item" style="background-color: #2b5797;">CSS</div>
-          <div class="skills-item" style="background-color: #5c3292;">jQuery</div>
-          <div class="skills-item" style="background-color: #0078d4;">JavaScript</div>
-          <div class="skills-item" style="background-color: #2b5797;">Bootstrap</div>
-          <div class="skills-item" style="background-color: #5c3292;">W3</div>
-          <div class="skills-item" style="background-color: #0078d4;">PHP</div>
-          <div class="skills-item" style="background-color: #2b5797;">CI3-4</div>
-          <div class="skills-item" style="background-color: #5c3292;">Laravel 8</div>
-          <div class="skills-item" style="background-color: #0078d4;">Node.js</div>
-          <div class="skills-item" style="background-color: #2b5797;">MySQL</div>
-          <div class="skills-item" style="background-color: #5c3292;">SQL Server</div>
-          <div class="skills-item" style="background-color: #0078d4;">Git</div>
-          <div class="skills-item" style="background-color: #2b5797;">RESTful APIs</div>
-          <div class="skills-item" style="background-color: #5c3292;">RabbitMQ</div>
-          <div class="skills-item" style="background-color: #0078d4;">Cypress</div>
-          <div class="skills-item" style="background-color: #2b5797;">Docker</div>
-          <div class="skills-item" style="background-color: #5c3292;">Docker Swarm</div>
+          <div class="skills-item">HTML</div>
+          <div class="skills-item">CSS</div>
+          <div class="skills-item">jQuery</div>
+          <div class="skills-item">JavaScript</div>
+          <div class="skills-item">Bootstrap</div>
+          <div class="skills-item">W3</div>
+          <div class="skills-item">PHP</div>
+          <div class="skills-item">CI3-4</div>
+          <div class="skills-item">Laravel 8</div>
+          <div class="skills-item">Node.js</div>
+          <div class="skills-item">MySQL</div>
+          <div class="skills-item">SQL Server</div>
+          <div class="skills-item">Git</div>
+          <div class="skills-item">RESTful APIs</div>
+          <div class="skills-item">RabbitMQ</div>
+          <div class="skills-item">Cypress</div>
+          <div class="skills-item">Docker</div>
+          <div class="skills-item">Docker Swarm</div>
         </div>
       </div>
     </div>
@@ -155,5 +167,25 @@
       </div>
     </div>
   </div>
+
+  <script>
+   
+    // Function to generate random background color for each skill item
+    function generateRandomColor() {
+      const colors = ['#0078d4', '#2b5797', '#5c3292', '#00b294', '#008272', '#da532c', '#e3008c', '#bf0077', '#ff8c00', '#ff2e00', '#c239b3', '#7e3878'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+    
+    // Assign random background color to each skills-item and its pseudo-element
+    document.querySelectorAll('.skills-item').forEach(function(item) {
+      const bgColor = generateRandomColor();
+      item.style.backgroundColor = bgColor;
+      item.style.borderColor = bgColor; // Set border color to match background color
+      item.style.color = '#fff'; // Set text color to white
+      item.style.position = 'relative'; // Ensure position is relative for pseudo-element
+      // Update pseudo-element's background color
+      item.style.setProperty('--bg-color', bgColor);
+    });
+  </script>
 </body>
 </html>
